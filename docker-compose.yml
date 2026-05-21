@@ -1,0 +1,14 @@
+services:
+  wiki:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./raw:/app/raw
+      - ./data:/app/data
+      - ./config.yaml:/app/config.yaml
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped

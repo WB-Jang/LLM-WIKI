@@ -1,0 +1,27 @@
+llm:
+  provider: openrouter
+  base_url: https://openrouter.ai/api/v1
+  model: openai/gpt-oss-20b
+  temperature: 0.1
+  max_tokens: 4096
+
+  # Available models (change 'model' above to switch)
+  # openai/gpt-oss-20b          - GPT OSS 20B (default)
+  # openai/gpt-4o               - GPT-4o
+  # anthropic/claude-3.5-sonnet - Claude 3.5 Sonnet
+  # google/gemini-flash-1.5     - Gemini Flash 1.5
+  # meta-llama/llama-3.3-70b-instruct - LLaMA 3.3 70B
+  # deepseek/deepseek-chat      - DeepSeek Chat
+  # qwen/qwen-2.5-72b-instruct  - Qwen 2.5 72B
+
+embedding:
+  model: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+
+retrieval:
+  top_k: 5
+  chunk_size: 800
+  chunk_overlap: 100
+
+app:
+  title: "금융법규 LLM Wiki"
+  port: 8501

@@ -1,0 +1,9 @@
+{
+  "name": "LLM Wiki",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "wiki",
+  "workspaceFolder": "/app",
+  "remoteUser": "root",
+  "forwardPorts": [8501],
+  "postStartCommand": "echo 'Container ready. Run: python scripts/ingest.py && streamlit run app/main.py'"
+}
