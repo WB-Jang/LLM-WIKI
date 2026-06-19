@@ -67,3 +67,37 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 If it needs, write dockerfile, docker-compose, pyproject.toml, devcontainer.json and build up vm with any necessary libraries using poetry
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+---
+
+## LLM-Wiki 운영 지침
+
+이 프로젝트는 Karpathy의 LLM-Wiki 패턴을 구현합니다. RAG(검색 증강)가 아니라 **LLM이 직접 위키를 읽고 유지합니다.**
+
+### 아키텍처
+
+```
+raw/ (원본 문서) → ingest → wiki/ (마크다운 페이지) → query → 답변
+```
+
+### 핵심 원칙
+
+- `raw/`의 원본 문서는 **절대 수정하지 않음**
+- `wiki/log.md`는 **append-only** — 기존 내용 삭제 금지
+- `wiki/index.md`는 전체 페이지 카탈로그 — 인제스트 시 자동 업데이트
+- 위키 페이지 간 참조는 반드시 `[[페이지명]]` 형태 사용
+
+### 주요 명령어
+
+| 명령 | 설명 |
+|------|------|
+| `python -m scripts.ingest raw/<파일>` | 문서 → 위키 페이지 생성 |
+| `python -m scripts.query "질문"` | 위키 읽어서 답변 |
+| `python -m scripts.lint` | 깨진 링크 / 고아 페이지 검사 |
+| `python -m app.web` | NiceGUI 웹 인터페이스 실행 |
+
+### 위키 페이지 편집 시
+
+- 기존 `[[wikilink]]`를 깨지 않도록 주의
+- 프론트매터 형식은 `SCHEMA.md` 참고
+- 편집 후 `lint`로 링크 검증

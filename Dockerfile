@@ -12,14 +12,10 @@ COPY pyproject.toml ./
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi --no-root
 
-# Pre-download embedding model
-RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/paraphrase-multilingual-mpnet-base-v2')"
-
 COPY . .
 
-EXPOSE 8501
+RUN mkdir -p wiki/sources wiki/concepts wiki/entities wiki/synthesis raw
 
-CMD ["streamlit", "run", "app/main.py", \
-     "--server.port=8501", \
-     "--server.address=0.0.0.0", \
-     "--server.headless=true"]
+EXPOSE 8080
+
+CMD ["python", "-m", "app.web"]

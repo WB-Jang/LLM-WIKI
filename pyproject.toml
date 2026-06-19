@@ -1,23 +1,22 @@
 [tool.poetry]
 name = "llm-wiki"
-version = "0.1.0"
-description = "Korean Financial Law LLM Wiki powered by OpenRouter"
+version = "0.2.0"
+description = "LLM-maintained knowledge wiki"
 authors = ["User <eeariorie2@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-streamlit = "^1.41"
-langchain = "^0.3"
-langchain-openai = "^0.2"
-langgraph = "^0.2"
-chromadb = "^0.6"
-sentence-transformers = "^3.3"
+nicegui = "^2.0"
+openai = "^1.0"
 pdfplumber = "^0.11"
 pyyaml = "^6.0"
 python-dotenv = "^1.0"
 
 [tool.poetry.scripts]
 ingest = "scripts.ingest:main"
+query = "scripts.query:main"
+lint = "scripts.lint:main"
+wiki = "app.web:run"
 
 [build-system]
 requires = ["poetry-core"]

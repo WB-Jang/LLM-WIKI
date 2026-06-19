@@ -2,10 +2,10 @@ services:
   wiki:
     build: .
     ports:
-      - "8501:8501"
+      - "8080:8080"
     volumes:
+      - ./wiki:/app/wiki
       - ./raw:/app/raw
-      - ./data:/app/data
       - ./config.yaml:/app/config.yaml
     env_file:
       - .env
