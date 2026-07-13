@@ -1,0 +1,100 @@
+{
+  "ref": {
+    "basic": {
+      "nodes": 7632,
+      "edges": 6845
+    },
+    "structural_integrity": {
+      "isolated_node_ratio": 0.0,
+      "weakly_connected_components": 1317,
+      "largest_component_ratio": 0.514,
+      "sink_node_ratio": 0.632,
+      "source_node_ratio": 0.279
+    },
+    "connectivity": {
+      "density": 0.00012,
+      "avg_degree": 1.794,
+      "hub_ratio": 0.059,
+      "reciprocity": 0.016,
+      "edge_node_ratio": 0.897
+    },
+    "relation_quality": {
+      "unique_relations": 33,
+      "relation_entropy": 4.188,
+      "normalized_entropy": 0.83,
+      "avg_relation_label_len": 3.48,
+      "avg_unique_rels_per_node": 1.382,
+      "top_relations": {
+        "조건임": 1269,
+        "구성함": 819,
+        "정함": 565,
+        "준수함": 534,
+        "절차를따름": 363,
+        "금지함": 341,
+        "예외로함": 293,
+        "권한을가짐": 263,
+        "정의함": 245,
+        "제외함": 236
+      }
+    },
+    "graph_efficiency": {
+      "clustering_coefficient": 0.011
+    },
+    "extraction_efficiency": {
+      "node_reuse_ratio": 0.089
+    }
+  },
+  "ours": {
+    "basic": {
+      "nodes": 136,
+      "edges": 141
+    },
+    "structural_integrity": {
+      "isolated_node_ratio": 0.0,
+      "weakly_connected_components": 12,
+      "largest_component_ratio": 0.824,
+      "sink_node_ratio": 0.706,
+      "source_node_ratio": 0.199
+    },
+    "connectivity": {
+      "density": 0.00768,
+      "avg_degree": 2.074,
+      "hub_ratio": 0.059,
+      "reciprocity": 0.043,
+      "edge_node_ratio": 1.037
+    },
+    "relation_quality": {
+      "unique_relations": 87,
+      "relation_entropy": 6.185,
+      "normalized_entropy": 0.96,
+      "avg_relation_label_len": 3.7,
+      "avg_unique_rels_per_node": 2.9,
+      "top_relations": {
+        "인가": 7,
+        "포함": 6,
+        "예탁": 5,
+        "통지": 4,
+        "보호": 4,
+        "정의": 4,
+        "공고": 3,
+        "결정": 3,
+        "말소할 수 있다": 3,
+        "정하다": 3
+      }
+    },
+    "graph_efficiency": {
+      "clustering_coefficient": 0.019,
+      "avg_shortest_path": 3.364,
+      "diameter": 7
+    },
+    "extraction_efficiency": {
+      "node_reuse_ratio": 0.096
+    }
+  },
+  "meta": {
+    "ref_source": "..\\wiki\\synthesis\\자본시장법_triplets.csv",
+    "ref_law_filter": "자본시장법",
+    "our_source": "자본시장과 금융투자업에 관한 법률(법률)(제21324호)(20260203)",
+    "our_date": "2026-07-13"
+  }
+}

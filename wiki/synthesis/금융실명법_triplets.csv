@@ -1,0 +1,113 @@
+law_nm,subject,relation,relation_category,object,article_number,confidence,concepts,created_at,pipeline_version,generator_model,evaluator_model,eval_score,retry_count
+금융실명법,금융실명거래 및 비밀보장에 관한 법률,구성함,LOGICAL,실지명의에 의한 금융거래 실시,제1조,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,금융실명거래 및 비밀보장에 관한 법률,구성함,LOGICAL,금융거래의 비밀 보장,제1조,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,실지명의에 의한 금융거래 실시 및 비밀 보장,조건임,LOGICAL,금융거래의 정상화,제1조,0.9,금융거래의 정상화를 꾀함으로써,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,금융실명거래 및 비밀보장에 관한 법률,정함,LOGICAL,경제정의 실현,제1조,1,법의 목적,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,금융실명거래 및 비밀보장에 관한 법률,정함,LOGICAL,국민경제의 건전한 발전 도모,제1조,1,법의 목적,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,금융실명거래 및 비밀보장에 관한 법률,정의함,LOGICAL,금융회사등,제2조 제1호,1,용어의 뜻을 정함,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,은행,제2조 제1호 가목,1,「은행법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,중소기업은행,제2조 제1호 나목,1,「중소기업은행법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,한국산업은행,제2조 제1호 다목,1,「한국산업은행법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,한국수출입은행,제2조 제1호 라목,1,「한국수출입은행법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,한국은행,제2조 제1호 마목,1,「한국은행법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,투자매매업자ㆍ투자중개업자ㆍ집합투자업자ㆍ신탁업자ㆍ증권금융회사ㆍ종합금융회사 및 명의개서대행회사,제2조 제1호 바목,1,「자본시장과 금융투자업에 관한 법률」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,상호저축은행 및 상호저축은행중앙회,제2조 제1호 사목,1,「상호저축은행법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,농업협동조합의 조합과 그 중앙회 및 농협은행,제2조 제1호 아목,1,「농업협동조합법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,수산업협동조합의 조합과 그 중앙회 및 수협은행,제2조 제1호 자목,1,「수산업협동조합법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,신용협동조합 및 신용협동조합중앙회,제2조 제1호 차목,1,「신용협동조합법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,새마을금고의 금고 및 중앙회,제2조 제1호 카목,1,「새마을금고법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,보험회사,제2조 제1호 타목,1,「보험업법」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,체신관서,제2조 제1호 파목,1,「우체국예금ㆍ보험에 관한 법률」에 따름,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,구성함,LOGICAL,대통령령으로 정하는 기관,제2조 제1호 하목,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융자산,정의함,LOGICAL,금융회사등이 취급하는 예금ㆍ적금ㆍ부금(賦金)ㆍ계금(契金)ㆍ예탁금ㆍ출자금ㆍ신탁재산ㆍ주식ㆍ채권ㆍ수익증권ㆍ출자지분ㆍ어음ㆍ수표ㆍ채무증서 등 금전 및 유가증권과 그 밖에 이와 유사한 것으로서 총리령으로 정하는 것,제2조 제2호,1,금융회사등이 취급하는 자산|금전 및 유가증권|총리령으로 정하는 것,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융거래,정의함,LOGICAL,"금융회사등이 금융자산을 수입·매매·환매·중개·할인·발행·상환·환급·수탁·등록·교환하거나 그 이자, 할인액 또는 배당을 지급하는 것과 이를 대행하는 것 또는 그 밖에 금융자산을 대상으로 하는 거래로서 총리령으로 정하는 것",제2조 제3호,1,금융회사등이 주체임|금융자산을 대상으로 함|총리령으로 정하는 거래 포함,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융거래,구성함,LOGICAL,금융회사등의 금융자산 수입·매매·환매·중개·할인·발행·상환·환급·수탁·등록·교환 및 이자·할인액·배당 지급 행위,제2조 제3호,0.95,금융자산 대상,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,실지명의,정의함,LOGICAL,주민등록표상의 명의,제2조 제4호,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,실지명의,정의함,LOGICAL,사업자등록증상의 명의,제2조 제4호,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,실지명의,정의함,LOGICAL,대통령령으로 정하는 명의,제2조 제4호,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,금융회사등,준수함,ACTION,실지명의에 의한 금융거래,제3조①,1,거래자의 실지명의(실명) 사용,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융회사등,허용함,ACTION,실명을 확인하지 아니하는 거래,제3조②,1,제1항에도 불구하고|다음 각 호의 어느 하나에 해당하는 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,실명을 확인하지 아니하는 거래,조건임,LOGICAL,"실명이 확인된 계좌에 의한 계속거래, 공과금 수납 및 100만원 이하의 송금 등의 거래로서 대통령령으로 정하는 거래",제3조②제1호,1,대통령령으로 정하는 거래,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,실명을 확인하지 아니하는 거래,조건임,LOGICAL,"외국통화의 매입, 외국통화로 표시된 예금의 수입 또는 외국통화로 표시된 채권의 매도 등의 거래로서 대통령령으로 정하는 기간 동안의 거래",제3조②제2호,1,대통령령으로 정하는 기간 동안,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,실명을 확인하지 아니하는 거래,조건임,LOGICAL,특정채권의 거래,제3조②제3호,1,금융실명거래및비밀보장에관한법률 시행일(1997년 12월 31일) 이후 1998년 12월 31일 사이에 재정경제부장관이 정하는 발행조건으로 발행된 채권,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,특정채권,구성함,LOGICAL,고용 안정과 근로자의 직업능력 향상 및 생활 안정 등을 위하여 발행되는 대통령령으로 정하는 채권,제3조②제3호가목,1,대통령령으로 정하는 채권,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,특정채권,구성함,LOGICAL,「외국환거래법」 제13조에 따른 외국환평형기금 채권으로서 외국통화로 표시된 채권,제3조②제3호나목,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,특정채권,구성함,LOGICAL,중소기업의 구조조정 지원 등을 위하여 발행되는 대통령령으로 정하는 채권,제3조②제3호다목,1,대통령령으로 정하는 채권,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,특정채권,구성함,LOGICAL,「자본시장과 금융투자업에 관한 법률」 제329조에 따라 증권금융회사가 발행한 사채,제3조②제3호라목,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,특정채권,구성함,LOGICAL,국민생활 안정과 국민경제의 건전한 발전을 위하여 발행되는 대통령령으로 정하는 채권,제3조②제3호마목,1,대통령령으로 정하는 채권,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,누구든지,금지함,ACTION,타인의 실명으로 금융거래를 하는 행위,제3조제3항,1,불법재산의 은닉 목적|자금세탁행위 목적|공중협박자금조달행위 목적|강제집행의 면탈 목적|그 밖에 탈법행위 목적,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,3
+금융실명법,타인의 실명으로 금융거래를 하는 행위,조건임,LOGICAL,"불법재산의 은닉, 자금세탁행위, 공중협박자금조달행위, 강제집행의 면탈, 탈법행위 목적",제3조제3항,0.95,「특정 금융거래정보의 보고 및 이용 등에 관한 법률」 제2조제4호(불법재산의 은닉)|「특정 금융거래정보의 보고 및 이용 등에 관한 법률」 제2조제5호(자금세탁행위)|「특정 금융거래정보의 보고 및 이용 등에 관한 법률」 제2조제6호(공중협박자금조달행위),2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,3
+금융실명법,금융회사등에 종사하는 자,금지함,ACTION,제3항에 따른 금융거래의 알선 또는 중개,제3조④,1,알선 금지|중개 금지,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,대통령령,정함,LOGICAL,"실명거래의 확인 방법 및 절차, 확인 업무의 위탁과 그 밖에 필요한 사항",제3조⑦,1,실명거래의 확인 방법 및 절차|확인 업무의 위탁|그 밖에 필요한 사항,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,"실명거래의 확인 방법 및 절차, 확인 업무의 위탁과 그 밖에 필요한 사항",위임함,STRUCTURE,대통령령,제3조⑦,0.9,대통령령으로 정함,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융회사등에 종사하는 자,금지함,ACTION,거래정보등의 제공 또는 누설,제4조①,1,명의인의 서면상 요구나 동의가 없는 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,누구든지,금지함,ACTION,금융회사등에 종사하는 자에 대한 거래정보등의 제공 요구,제4조①,1,거짓 또는 그 밖의 부정한 수단이나 방법 사용 시,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,거래정보등의 제공 또는 요구,조건임,LOGICAL,제4조① 단서(예외 사유),제4조①,1,사용 목적에 필요한 최소한의 범위 내,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,법원의 제출명령 또는 법관이 발부한 영장,조건임,LOGICAL,거래정보등의 제공,제4조①제1호,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,과세자료 등의 제공,조건임,LOGICAL,거래정보등의 제공,제4조①제2호,1,"조세에 관한 법률에 따른 제출의무|소관 관서의 장이 상속·증여 재산의 확인, 조세탈루 혐의 인정 자료 확인, 체납자 재산조회, 조세 관련 질문·조사를 위해 필요한 경우",2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,금융감독원장 및 예금보험공사사장,제출함,ACTION,거래정보등,제4조①제3호,1,「국정감사 및 조사에 관한 법률」에 따른 국정조사 시|해당 조사위원회의 의결이 있는 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,"금융위원회, 금융감독원장 및 예금보험공사사장",요구함,ACTION,거래정보등,제4조①제4호,1,금융회사등에 대한 감독·검사를 위하여 필요한 경우|내부자거래 및 불공정거래행위 조사|금융사고 적발|불건전 금융거래행위 조사|법령 위반행위 조사|예금보험업무 및 예금자표 작성업무 수행,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,금융회사등,허용함,ACTION,업무상 필요한 거래정보등의 제공,제4조①제5호,1,동일한 금융회사등의 내부 또는 금융회사등 상호간,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,금융위원회 및 금융감독원장,요구함,ACTION,외국 금융감독기관,제4조①제6호,1,상응하는 업무 수행을 위한 업무협조|금융회사등 및 해외지점 등에 대한 감독·검사|자본시장법에 따른 정보교환 및 조사 협조,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,거래소,요구함,ACTION,투자매매업자·투자중개업자,제4조①제7호,1,이상거래 심리 또는 회원 감리 수행|외국거래소와의 협조|금융위원회의 사전 승인을 받은 경우로 한정,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,법률에 따른 의무적 공개 사항,조건임,LOGICAL,거래정보등의 제공,제4조①제8호,1,불특정 다수인에게 의무적으로 공개하여야 하는 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,2
+금융실명법,거래정보등의 제공을 요구하는 자,요구함,ACTION,금융회사등의 특정 점포,제4조②,1,금융위원회가 정하는 표준양식에 의하여|제1항제1호부터 제4호까지 또는 제6호부터 제8호까지의 규정에 따른 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회가 정하는 표준양식,구성함,LOGICAL,명의인의 인적사항,제4조②,1,제1호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회가 정하는 표준양식,구성함,LOGICAL,요구 대상 거래기간,제4조②,1,제2호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회가 정하는 표준양식,구성함,LOGICAL,요구의 법적 근거,제4조②,1,제3호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회가 정하는 표준양식,구성함,LOGICAL,사용 목적,제4조②,1,제4호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회가 정하는 표준양식,구성함,LOGICAL,요구하는 거래정보등의 내용,제4조②,1,제5호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회가 정하는 표준양식,구성함,LOGICAL,요구하는 기관의 담당자 및 책임자의 성명과 직책 등 인적사항,제4조②,1,제6호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,부동산거래와 관련한 소득세 또는 법인세의 탈루혐의가 인정되어 그 탈루사실의 확인이 필요한 자에 대한 거래정보등의 제공 요구,예외로함,LOGICAL,금융회사등의 특정 점포에 요구함,제4조②,0.95,"제1항제1호 또는 제2호에 따른 경우|부동산의 보유기간, 보유 수, 거래 규모 및 거래 방법 등 명백한 자료에 의한 경우|대통령령으로 정하는 부동산거래 관련 소득세 또는 법인세 탈루혐의 인정|해당 부동산 거래를 알선·중개한 자 포함",2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,체납액 1천만원 이상인 체납자의 재산조회를 위하여 필요한 거래정보등의 제공 요구,예외로함,LOGICAL,금융회사등의 특정 점포에 요구함,제4조②,0.95,대통령령으로 정하는 바에 따라 요구하는 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,부동산 탈루혐의 확인 필요자 또는 1천만원 이상 체납자 관련 요구,요구함,ACTION,금융회사등의 거래정보등을 보관 또는 관리하는 부서,제4조②,0.9,특정 점포 대신 보관·관리 부서에 요구 가능,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,제4조제1항 각 호에 따라 거래정보등을 알게 된 자,금지함,ACTION,거래정보등의 타인 제공 또는 누설,제4조④,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,제4조제1항 각 호에 따라 거래정보등을 알게 된 자,금지함,ACTION,거래정보등의 목적 외 용도 이용,제4조④,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,누구든지,금지함,ACTION,거짓 또는 그 밖의 부정한 수단이나 방법으로 거래정보등의 제공을 요구하는 행위,제4조④,1,거짓 또는 그 밖의 부정한 수단이나 방법,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,금융위원회 또는 금융감독원장이 제4조제1항제4호 및 제6호에 따라 알게 된 거래정보등,허용함,ACTION,외국 금융감독기관에 대한 제공,제4조④,1,단서 조항에 따른 예외,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,거래소가 제4조제1항제7호에 따라 알게 된 거래정보등,허용함,ACTION,외국거래소 등에 대한 제공,제4조④,1,단서 조항에 따른 예외,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,제4조제1항 또는 제4항을 위반하여 제공 또는 누설된 거래정보등을 취득한 자(그로부터 거래정보등을 다시 취득한 자를 포함한다),금지함,ACTION,거래정보등을 타인에게 제공 또는 누설하는 행위,제4조⑤,1,그 위반사실을 알게 된 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,2
+금융실명법,금융위원회,정함,LOGICAL,금융거래정보등의 제공 요구 시 사용될 표준양식,제4조⑥,1,제2항에 따른,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,거래정보등의 제공 요구,조건임,LOGICAL,금융위원회가 정한 표준양식 사용,제4조⑥,0.95,다음 각 호의 법률의 규정에 따라 요구하는 경우|해당 법률의 규정에도 불구하고,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,거래정보등의 제공 요구,근거함,STRUCTURE,「감사원법」 제27조제2항,제4조⑥,1,제4조⑥ 제1호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,거래정보등의 제공 요구,근거함,STRUCTURE,「정치자금법」 제52조제2항,제4조⑥,1,제4조⑥ 제2호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,거래정보등의 제공 요구,근거함,STRUCTURE,「공직자윤리법」 제8조제5항,제4조⑥,1,제4조⑥ 제3호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,거래정보등의 제공 요구,근거함,STRUCTURE,「상속세 및 증여세법」 제83조제1항,제4조⑥,1,제4조⑥ 제5호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,거래정보등의 제공 요구,근거함,STRUCTURE,「특정 금융거래정보의 보고 및 이용 등에 관한 법률」 제13조제3항,제4조⑥,1,제4조⑥ 제6호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,거래정보등의 제공 요구,근거함,STRUCTURE,「과세자료의 제출 및 관리에 관한 법률」 제6조제1항,제4조⑥,1,제4조⑥ 제7호,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,통보의 유예,조건임,LOGICAL,사람의 생명이나 신체의 안전을 위협할 우려가 있는 경우,제4조의2 제2항 제1호,0.95,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,0
+금융실명법,통보의 유예,조건임,LOGICAL,"증거 인멸, 증인 위협 등 공정한 사법절차의 진행을 방해할 우려가 명백한 경우",제4조의2 제2항 제2호,0.95,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,0
+금융실명법,통보의 유예,조건임,LOGICAL,질문ㆍ조사 등의 행정절차의 진행을 방해하거나 과도하게 지연시킬 우려가 명백한 경우,제4조의2 제2항 제3호,0.95,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,0
+금융실명법,제4조의2 제1항부터 제4항까지의 규정,적용대상임,SCOPE,「감사원법」 제27조제2항에 따른 거래정보등의 제공 요구,제4조의2 제5항,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,제4조의2 제1항부터 제4항까지의 규정,적용대상임,SCOPE,「정치자금법」 제52조제2항에 따른 거래정보등의 제공 요구,제4조의2 제5항,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,제4조의2 제1항부터 제4항까지의 규정,적용대상임,SCOPE,「공직자윤리법」 제8조제5항에 따른 거래정보등의 제공 요구,제4조의2 제5항,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,제4조의2 제1항부터 제4항까지의 규정,적용대상임,SCOPE,「상속세 및 증여세법」 제83조제1항에 따른 거래정보등의 제공 요구,제4조의2 제5항,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,제4조의2 제1항부터 제4항까지의 규정,적용대상임,SCOPE,「과세자료의 제출 및 관리에 관한 법률」 제6조제1항에 따른 거래정보등의 제공 요구,제4조의2 제5항,1,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,금융위원회,요구함,ACTION,관계 행정기관의 장,제5조의2①,1,금융회사등이 금융실명거래 및 비밀보장에 관한 법률 또는 이 법에 따른 명령이나 지시를 위반한 사실을 발견하였을 때|해당 금융회사등의 영업에 관한 행정제재처분의 권한을 가진 관계 행정기관의 장에게 조치를 요구함,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회,권한을가짐,ACTION,위반행위의 시정명령 또는 중지명령,제5조의2①1호,0.95,금융회사등이 금융실명거래 및 비밀보장에 관한 법률 또는 이 법에 따른 명령이나 지시를 위반한 사실을 발견하였을 때,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회,권한을가짐,ACTION,위법행위로 인한 조치를 받았다는 사실의 공표명령 또는 게시명령,제5조의2①2호,0.95,금융회사등이 금융실명거래 및 비밀보장에 관한 법률 또는 이 법에 따른 명령이나 지시를 위반한 사실을 발견하였을 때,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회,권한을가짐,ACTION,기관경고,제5조의2①3호,0.95,금융회사등이 금융실명거래 및 비밀보장에 관한 법률 또는 이 법에 따른 명령이나 지시를 위반한 사실을 발견하였을 때,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회,권한을가짐,ACTION,기관주의,제5조의2①4호,0.95,금융회사등이 금융실명거래 및 비밀보장에 관한 법률 또는 이 법에 따른 명령이나 지시를 위반한 사실을 발견하였을 때,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융위원회,정함,LOGICAL,금융회사등의 업무 전부 또는 일부의 정지,제5조의2②,1,6개월 이내의 범위,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.7,0
+금융실명법,금융회사등,위반함,SANCTION,제5조의2② 각 호의 사유,제5조의2②,0.9,제1항제1호 및 제2호에 따른 명령 미이행|제1항제3호에 따른 기관경고 3회 이상 수령|금융실명거래 및 비밀보장에 관한 법률 또는 이 법에 따른 명령이나 지시 위반|건전한 금융거래의 질서 또는 거래자의 이익을 크게 해칠 우려가 있는 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.7,0
+금융실명법,금융위원회,요구함,ACTION,금융회사등의 장,제5조의2 제3항,1,금융회사등의 임원 또는 직원이 금융실명거래 및 비밀보장에 관한 법률 또는 이 법에 따른 명령이나 지시를 위반한 사실을 발견하였을 때,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융위원회,요구함,ACTION,해임,제5조의2 제3항 제1호 가목,1,대상: 금융회사등의 임원,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융위원회,요구함,ACTION,6개월 이내의 직무정지,제5조의2 제3항 제1호 나목,1,대상: 금융회사등의 임원|6개월 이내,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융위원회,요구함,ACTION,문책경고,제5조의2 제3항 제1호 다목,1,대상: 금융회사등의 임원,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융위원회,요구함,ACTION,주의적 경고,제5조의2 제3항 제1호 라목,1,대상: 금융회사등의 임원,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융위원회,요구함,ACTION,주의,제5조의2 제3항 제1호 마목,1,대상: 금융회사등의 임원,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융위원회,요구함,ACTION,면직,제5조의2 제3항 제2호 가목,1,대상: 금융회사등의 직원,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융위원회,요구함,ACTION,6개월 이내의 정직,제5조의2 제3항 제2호 나목,1,대상: 금융회사등의 직원|6개월 이내,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융위원회,요구함,ACTION,감봉,제5조의2 제3항 제2호 다목,1,대상: 금융회사등의 직원,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,금융위원회,요구함,ACTION,견책,제5조의2 제3항 제2호 라목,1,대상: 금융회사등의 직원,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,1
+금융실명법,관계 행정기관의 장,준수함,ACTION,제5조의2제1항 또는 제5조의2제2항에 따른 요구,제5조의2④,1,정당한 사유가 없으면|요구에 따라야 함,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,제5조의2제1항 또는 제5조의2제2항에 따른 요구,근거함,STRUCTURE,제5조의2(행정처분),제5조의2④,0.9,,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,"제3조제3항 또는 제4항, 제4조제1항 또는 제3항부터 제5항까지의 규정을 위반한 자",처벌대상임,SANCTION,5년 이하의 징역 또는 5천만원 이하의 벌금,제6조①,1,금융실명거래 및 비밀보장에 관한 법률 위반,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,제6조 제1항의 징역형과 벌금형,허용함,ACTION,징역형과 벌금형의 병과,제6조 ②,1,병과할 수 있음,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,1,1
+금융실명법,"법인의 대표자나 법인 또는 개인의 대리인, 사용인, 그 밖의 종업원",위반함,SANCTION,제6조 또는 제7조,제8조,1,업무에 관하여 위반행위를 함,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,"법인의 대표자나 법인 또는 개인의 대리인, 사용인, 그 밖의 종업원",처벌대상임,SANCTION,행위자,제8조,1,제6조 또는 제7조 위반 시 벌함,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,법인 또는 개인,처벌대상임,SANCTION,해당 조문의 벌금 또는 과태료,제8조,1,행위자의 위반행위가 법인 또는 개인의 업무에 관한 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,상당한 주의와 감독을 게을리하지 아니한 경우,예외로함,LOGICAL,법인 또는 개인에 대한 벌금 또는 과태료 부과,제8조,1,위반행위를 방지하기 위하여 해당 업무에 관하여 상당한 주의와 감독을 다한 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,1
+금융실명법,금융실명거래 및 비밀보장에 관한 법률,우선함,LOGICAL,다른 법률,제9조 ①,1,법률 간 내용이 일치하지 아니하는 경우,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,0
+금융실명법,금융실명거래및비밀보장에관한긴급재정경제명령 시행 당시 같은 긴급재정경제명령보다 우선하여 적용하였던 법률,우선함,LOGICAL,금융실명거래 및 비밀보장에 관한 법률,제9조 ②,1,제1항에도 불구하고|긴급재정경제명령 시행 당시 기준,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.9,3
+금융실명법,금융위원회,위임함,STRUCTURE,금융감독원장,제10조,1,금융실명거래 및 비밀보장에 관한 법률에 따른 권한의 일부|대통령령으로 정하는 바에 따라,2026-07-04,2,google/gemma-4-26b-a4b-it,deepseek/deepseek-v4-flash,0.8,3

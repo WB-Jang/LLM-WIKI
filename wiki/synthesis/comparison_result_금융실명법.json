@@ -1,0 +1,100 @@
+{
+  "ref": {
+    "basic": {
+      "nodes": 142,
+      "edges": 112
+    },
+    "structural_integrity": {
+      "isolated_node_ratio": 0.0,
+      "weakly_connected_components": 31,
+      "largest_component_ratio": 0.204,
+      "sink_node_ratio": 0.704,
+      "source_node_ratio": 0.239
+    },
+    "connectivity": {
+      "density": 0.00559,
+      "avg_degree": 1.577,
+      "hub_ratio": 0.056,
+      "reciprocity": 0.018,
+      "edge_node_ratio": 0.789
+    },
+    "relation_quality": {
+      "unique_relations": 17,
+      "relation_entropy": 3.538,
+      "normalized_entropy": 0.865,
+      "avg_relation_label_len": 3.35,
+      "avg_unique_rels_per_node": 1.286,
+      "top_relations": {
+        "구성함": 28,
+        "요구함": 16,
+        "조건임": 13,
+        "금지함": 8,
+        "근거함": 7,
+        "정의함": 6,
+        "정함": 5,
+        "허용함": 5,
+        "적용대상임": 5,
+        "권한을가짐": 4
+      }
+    },
+    "graph_efficiency": {
+      "clustering_coefficient": 0.0,
+      "avg_shortest_path": 2.419,
+      "diameter": 4
+    },
+    "extraction_efficiency": {
+      "node_reuse_ratio": 0.056
+    }
+  },
+  "ours": {
+    "basic": {
+      "nodes": 23,
+      "edges": 21
+    },
+    "structural_integrity": {
+      "isolated_node_ratio": 0.0,
+      "weakly_connected_components": 2,
+      "largest_component_ratio": 0.913,
+      "sink_node_ratio": 0.348,
+      "source_node_ratio": 0.609
+    },
+    "connectivity": {
+      "density": 0.0415,
+      "avg_degree": 1.826,
+      "hub_ratio": 0.087,
+      "reciprocity": 0.0,
+      "edge_node_ratio": 0.913
+    },
+    "relation_quality": {
+      "unique_relations": 8,
+      "relation_entropy": 2.117,
+      "normalized_entropy": 0.706,
+      "avg_relation_label_len": 2.0,
+      "avg_unique_rels_per_node": 1.267,
+      "top_relations": {
+        "포함": 12,
+        "정의": 3,
+        "시행": 1,
+        "감독": 1,
+        "부과": 1,
+        "위탁": 1,
+        "우선": 1,
+        "관련": 1
+      }
+    },
+    "graph_efficiency": {
+      "clustering_coefficient": 0.0,
+      "avg_shortest_path": 2.39,
+      "diameter": 4
+    },
+    "extraction_efficiency": {
+      "node_reuse_ratio": 0.043
+    }
+  },
+  "meta": {
+    "ref_source": "..\\wiki\\synthesis\\금융실명법_triplets.csv",
+    "ref_law_filter": "금융실명법",
+    "our_source": "금융실명거래 및 비밀보장에 관한 법률(법률)(제20894호)(20250401)",
+    "our_date": "2026-07-13"
+  }
+}
