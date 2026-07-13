@@ -1,223 +1,295 @@
 #!/usr/bin/env python3
-"""Compare two knowledge graphs: CSV-pipeline output vs graphify JSON output.
+"""Compare two knowledge graphs on intrinsic quality metrics.
+
+Each graph is evaluated independently — no graph is treated as ground truth.
 
 Usage:
   python -m scripts.compare_graphs \\
     --ref-triplets path/to/triplets.csv \\
     --our-graph wiki/synthesis/<name>.graph.json \\
-    [--law 금융실명법]   # optional: filter reference by law name
+    [--law 금융실명법]
 """
 
 import csv
 import json
+import math
 import argparse
 import sys
 from pathlib import Path
 
+import networkx as nx
 
-def _load_ref_graph(triplets_csv: Path, law_filter: str | None) -> dict:
-    """Load reference graph from triplets CSV."""
-    nodes: dict[str, str] = {}  # name -> type
-    edges: list[dict] = []
 
-    with open(triplets_csv, encoding="utf-8", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
+# ── 데이터 로딩 ──────────────────────────────────────────────────────────────
+
+def _load_ref_graph(triplets_csv: Path, law_filter: str | None) -> nx.DiGraph:
+    G = nx.DiGraph()
+    with open(triplets_csv, encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
             if law_filter and row.get("law_nm", "") != law_filter:
                 continue
-            subj = row["subject"].strip()
-            obj = row["object"].strip()
-            rel = row["relation"].strip()
-            if not subj or not obj or not rel:
+            s, r, o = row["subject"].strip(), row["relation"].strip(), row["object"].strip()
+            if not s or not r or not o:
                 continue
-            # Use relation_category as rough type
-            nodes.setdefault(subj, row.get("relation_category", ""))
-            nodes.setdefault(obj, row.get("relation_category", ""))
-            edges.append({
-                "source": subj,
-                "relation": rel,
-                "target": obj,
-                "article": row.get("article_number", ""),
-                "confidence": _to_float(row.get("confidence", "")),
-                "eval_score": _to_float(row.get("eval_score", "")),
-            })
-
-    return {"nodes": nodes, "edges": edges}
+            if not G.has_node(s):
+                G.add_node(s, type=row.get("relation_category", ""))
+            if not G.has_node(o):
+                G.add_node(o, type=row.get("relation_category", ""))
+            if G.has_edge(s, o):
+                prev = G[s][o]["relation"]
+                if r not in prev:
+                    G[s][o]["relation"] = prev + ", " + r
+            else:
+                G.add_edge(s, o, relation=r)
+    return G
 
 
-def _load_our_graph(json_path: Path) -> dict:
-    """Load graphify JSON output."""
+def _load_our_graph(json_path: Path) -> nx.DiGraph:
     data = json.loads(json_path.read_text("utf-8"))
-    nodes = {n["id"]: n.get("type", "") for n in data.get("nodes", [])}
-    edges = data.get("edges", [])
-    return {"nodes": nodes, "edges": edges, "meta": data.get("meta", {})}
+    G = nx.DiGraph()
+    for n in data.get("nodes", []):
+        G.add_node(n["id"], type=n.get("type", ""))
+    for e in data.get("edges", []):
+        s, o, r = e["source"], e["target"], e["relation"]
+        if G.has_edge(s, o):
+            prev = G[s][o]["relation"]
+            if r not in prev:
+                G[s][o]["relation"] = prev + ", " + r
+        else:
+            G.add_edge(s, o, relation=r)
+    return G, data.get("meta", {})
 
 
-def _to_float(val: str) -> float | None:
-    try:
-        return float(val)
-    except (ValueError, TypeError):
-        return None
+# ── 지표 계산 ─────────────────────────────────────────────────────────────────
 
+def _structural_integrity(G: nx.DiGraph) -> dict:
+    n = G.number_of_nodes()
+    if n == 0:
+        return {}
 
-def _edge_key(e: dict) -> tuple:
-    return (e["source"], e["target"])
+    isolated = len(list(nx.isolates(G)))
+    wcc = list(nx.weakly_connected_components(G))
+    lcc_size = max(len(c) for c in wcc) if wcc else 0
 
+    in_degrees = dict(G.in_degree())
+    out_degrees = dict(G.out_degree())
+    sink_nodes = sum(1 for v in G.nodes if out_degrees[v] == 0 and in_degrees[v] > 0)
+    source_nodes = sum(1 for v in G.nodes if in_degrees[v] == 0 and out_degrees[v] > 0)
 
-def _node_overlap(ref_nodes: dict, our_nodes: dict) -> dict:
-    ref_set = set(ref_nodes)
-    our_set = set(our_nodes)
-    exact = ref_set & our_set
-    # Partial: our node is substring of ref node or vice versa
-    partial = set()
-    for o in our_set - exact:
-        for r in ref_set - exact:
-            if o in r or r in o:
-                partial.add(o)
-                break
     return {
-        "ref_total": len(ref_set),
-        "our_total": len(our_set),
-        "exact_overlap": len(exact),
-        "partial_overlap": len(partial),
-        "only_in_ref": sorted(ref_set - our_set - {r for r in ref_set if any(o in r or r in o for o in our_set)})[:20],
-        "only_in_ours": sorted(our_set - exact)[:20],
-        "overlap_examples": sorted(exact)[:20],
+        "isolated_node_ratio": round(isolated / n, 3),
+        "weakly_connected_components": len(wcc),
+        "largest_component_ratio": round(lcc_size / n, 3),
+        "sink_node_ratio": round(sink_nodes / n, 3),
+        "source_node_ratio": round(source_nodes / n, 3),
     }
 
 
-def _edge_overlap(ref_edges: list, our_edges: list) -> dict:
-    ref_pairs = {_edge_key(e) for e in ref_edges}
-    our_pairs = {_edge_key(e) for e in our_edges}
-    exact = ref_pairs & our_pairs
+def _connectivity(G: nx.DiGraph) -> dict:
+    n, e = G.number_of_nodes(), G.number_of_edges()
+    if n < 2:
+        return {}
 
-    # Partial: same source or same target
-    partial = set()
-    for o in our_pairs - exact:
-        for r in ref_pairs - exact:
-            if o[0] == r[0] or o[1] == r[1]:
-                partial.add(o)
-                break
-
-    # Relation distribution in each graph
-    def rel_dist(edges):
-        d = {}
-        for e in edges:
-            d[e["relation"]] = d.get(e["relation"], 0) + 1
-        return dict(sorted(d.items(), key=lambda x: -x[1])[:15])
+    degrees = [d for _, d in G.degree()]
+    avg_degree = round(sum(degrees) / n, 3)
+    hub_threshold = avg_degree * 2
+    hub_ratio = round(sum(1 for d in degrees if d >= hub_threshold) / n, 3)
 
     return {
-        "ref_total": len(ref_edges),
-        "our_total": len(our_edges),
-        "exact_pair_overlap": len(exact),
-        "partial_pair_overlap": len(partial),
-        "ref_top_relations": rel_dist(ref_edges),
-        "our_top_relations": rel_dist(our_edges),
-        "overlap_pairs": [{"source": s, "target": t} for s, t in sorted(exact)[:10]],
+        "density": round(nx.density(G), 5),
+        "avg_degree": avg_degree,
+        "hub_ratio": hub_ratio,
+        "reciprocity": round(nx.reciprocity(G), 3),
+        "edge_node_ratio": round(e / n, 3),
     }
 
 
-def _avg(vals):
-    v = [x for x in vals if x is not None]
-    return round(sum(v) / len(v), 3) if v else None
+def _relation_quality(G: nx.DiGraph) -> dict:
+    relations = [d["relation"] for _, _, d in G.edges(data=True)]
+    if not relations:
+        return {}
 
+    # 단일 relation만 집계 (복수 관계는 첫 번째만)
+    primary = [r.split(",")[0].strip() for r in relations]
 
-def compare(
-    ref_triplets: Path,
-    our_graph: Path,
-    law_filter: str | None = None,
-) -> dict:
-    ref = _load_ref_graph(ref_triplets, law_filter)
-    ours = _load_our_graph(our_graph)
+    freq: dict[str, int] = {}
+    for r in primary:
+        freq[r] = freq.get(r, 0) + 1
 
-    node_cmp = _node_overlap(ref["nodes"], ours["nodes"])
-    edge_cmp = _edge_overlap(ref["edges"], ours["edges"])
+    total = len(primary)
+    entropy = -sum((c / total) * math.log2(c / total) for c in freq.values() if c > 0)
+    max_entropy = math.log2(len(freq)) if len(freq) > 1 else 1
+    normalized_entropy = round(entropy / max_entropy, 3) if max_entropy else 0
 
-    ref_conf_avg = _avg([e.get("confidence") for e in ref["edges"]])
-    ref_eval_avg = _avg([e.get("eval_score") for e in ref["edges"]])
+    avg_label_len = round(sum(len(r) for r in freq) / len(freq), 2)
 
-    recall = round(node_cmp["exact_overlap"] / node_cmp["ref_total"], 3) if node_cmp["ref_total"] else 0
-    precision = round(node_cmp["exact_overlap"] / node_cmp["our_total"], 3) if node_cmp["our_total"] else 0
-    f1 = round(2 * precision * recall / (precision + recall), 3) if (precision + recall) else 0
+    # 노드당 고유 관계 수
+    node_rels: dict[str, set] = {}
+    for u, _, d in G.edges(data=True):
+        node_rels.setdefault(u, set()).add(d["relation"].split(",")[0].strip())
+    avg_unique_rels = round(sum(len(v) for v in node_rels.values()) / len(node_rels), 3) if node_rels else 0
 
     return {
-        "summary": {
-            "node_recall": recall,
-            "node_precision": precision,
-            "node_f1": f1,
-            "edge_pair_overlap_rate": round(
-                edge_cmp["exact_pair_overlap"] / edge_cmp["ref_total"], 3
-            ) if edge_cmp["ref_total"] else 0,
+        "unique_relations": len(freq),
+        "relation_entropy": round(entropy, 3),
+        "normalized_entropy": normalized_entropy,
+        "avg_relation_label_len": avg_label_len,
+        "avg_unique_rels_per_node": avg_unique_rels,
+        "top_relations": dict(sorted(freq.items(), key=lambda x: -x[1])[:10]),
+    }
+
+
+def _graph_efficiency(G: nx.DiGraph) -> dict:
+    # 최대 약연결 컴포넌트(LCC)에서만 계산 (전체 그래프에 적용 시 매우 느림)
+    wcc = list(nx.weakly_connected_components(G))
+    if not wcc:
+        return {}
+    lcc_nodes = max(wcc, key=len)
+    lcc = G.subgraph(lcc_nodes).copy()
+    lcc_undirected = lcc.to_undirected()
+
+    result = {
+        "clustering_coefficient": round(nx.average_clustering(lcc_undirected), 3),
+    }
+
+    # 500노드 이하일 때만 평균 최단 경로/지름 계산 (비용 큼)
+    if len(lcc_nodes) <= 500 and nx.is_connected(lcc_undirected):
+        try:
+            result["avg_shortest_path"] = round(nx.average_shortest_path_length(lcc_undirected), 3)
+            result["diameter"] = nx.diameter(lcc_undirected)
+        except Exception:
+            pass
+
+    return result
+
+
+def _extraction_efficiency(G: nx.DiGraph) -> dict:
+    n, e = G.number_of_nodes(), G.number_of_edges()
+    if n == 0:
+        return {}
+
+    # 노드 재사용률: subject이면서 동시에 object인 노드
+    subjects = {u for u, _ in G.edges()}
+    objects = {v for _, v in G.edges()}
+    reused = subjects & objects
+    reuse_ratio = round(len(reused) / n, 3) if n else 0
+
+    return {
+        "node_reuse_ratio": reuse_ratio,
+    }
+
+
+def _analyze(G: nx.DiGraph) -> dict:
+    return {
+        "basic": {
+            "nodes": G.number_of_nodes(),
+            "edges": G.number_of_edges(),
         },
-        "ref_meta": {
-            "law_filter": law_filter or "all",
-            "avg_confidence": ref_conf_avg,
-            "avg_eval_score": ref_eval_avg,
-            "source": str(ref_triplets),
-        },
-        "our_meta": ours.get("meta", {}),
-        "nodes": node_cmp,
-        "edges": edge_cmp,
+        "structural_integrity": _structural_integrity(G),
+        "connectivity": _connectivity(G),
+        "relation_quality": _relation_quality(G),
+        "graph_efficiency": _graph_efficiency(G),
+        "extraction_efficiency": _extraction_efficiency(G),
     }
 
 
-def _print_report(result: dict):
-    s = result["summary"]
-    nc = result["nodes"]
-    ec = result["edges"]
-    rm = result["ref_meta"]
-    om = result["our_meta"]
+# ── 출력 ─────────────────────────────────────────────────────────────────────
 
-    print("\n" + "=" * 60)
-    print("  지식 그래프 품질 비교 리포트")
-    print("=" * 60)
+def _fmt(v) -> str:
+    if v is None:
+        return "-"
+    if isinstance(v, float):
+        return f"{v:.3f}"
+    return str(v)
 
-    print(f"\n[참조 그래프]  {rm['source']}")
-    print(f"  법령 필터:   {rm['law_filter']}")
-    print(f"  평균 신뢰도: {rm['avg_confidence']}")
-    print(f"  평균 평가점: {rm['avg_eval_score']}")
 
-    print(f"\n[우리 그래프]  {om.get('source', '-')}")
-    print(f"  생성일:      {om.get('date', '-')}")
+def _print_report(ref_result: dict, our_result: dict, ref_label: str, our_label: str):
+    sections = [
+        ("기본 통계", "basic", [
+            ("노드 수", "nodes"),
+            ("엣지 수", "edges"),
+        ]),
+        ("구조적 완결성", "structural_integrity", [
+            ("고립 노드 비율 ↓", "isolated_node_ratio"),
+            ("약연결 컴포넌트 수 ↓", "weakly_connected_components"),
+            ("최대 컴포넌트 비율 ↑", "largest_component_ratio"),
+            ("싱크 노드 비율 ↓", "sink_node_ratio"),
+            ("소스 노드 비율 ↓", "source_node_ratio"),
+        ]),
+        ("연결 밀도", "connectivity", [
+            ("그래프 밀도 ↑", "density"),
+            ("평균 차수 ↑", "avg_degree"),
+            ("허브 노드 비율", "hub_ratio"),
+            ("상호 엣지 비율", "reciprocity"),
+            ("엣지/노드 비율 ↑", "edge_node_ratio"),
+        ]),
+        ("관계 정교함", "relation_quality", [
+            ("고유 관계 수 ↑", "unique_relations"),
+            ("관계 엔트로피 ↑", "relation_entropy"),
+            ("정규화 엔트로피 ↑", "normalized_entropy"),
+            ("관계 레이블 평균 길이 ↑", "avg_relation_label_len"),
+            ("노드당 고유 관계 수 ↑", "avg_unique_rels_per_node"),
+        ]),
+        ("그래프 효율성", "graph_efficiency", [
+            ("클러스터링 계수 ↑", "clustering_coefficient"),
+            ("평균 최단 경로 ↓", "avg_shortest_path"),
+            ("지름 ↓", "diameter"),
+        ]),
+        ("추출 효율", "extraction_efficiency", [
+            ("노드 재사용률 ↑", "node_reuse_ratio"),
+        ]),
+    ]
 
-    print("\n── 노드(엔티티) 비교 ──────────────────────────────")
-    print(f"  참조 그래프:   {nc['ref_total']:>5}개")
-    print(f"  우리 그래프:   {nc['our_total']:>5}개")
-    print(f"  완전 일치:     {nc['exact_overlap']:>5}개")
-    print(f"  부분 일치:     {nc['partial_overlap']:>5}개")
-    print(f"  Precision:    {s['node_precision']:.1%}")
-    print(f"  Recall:       {s['node_recall']:.1%}")
-    print(f"  F1:           {s['node_f1']:.1%}")
+    W = 26
+    print("\n" + "=" * 70)
+    print("  지식 그래프 내재적 품질 비교 리포트")
+    print("=" * 70)
+    print(f"  {'지표':<{W}}  {'참조 그래프':>14}  {'우리 그래프':>14}")
+    print("-" * 70)
 
-    print("\n── 엣지(관계) 비교 ──────────────────────────────")
-    print(f"  참조 그래프:   {ec['ref_total']:>5}개")
-    print(f"  우리 그래프:   {ec['our_total']:>5}개")
-    print(f"  동일 쌍 일치:  {ec['exact_pair_overlap']:>5}개")
-    print(f"  쌍 일치율:    {s['edge_pair_overlap_rate']:.1%}")
+    for section_name, section_key, metrics in sections:
+        print(f"\n  [{section_name}]")
+        ref_sec = ref_result.get(section_key, {})
+        our_sec = our_result.get(section_key, {})
+        for label, key in metrics:
+            rv = _fmt(ref_sec.get(key))
+            ov = _fmt(our_sec.get(key))
+            print(f"  {label:<{W}}  {rv:>14}  {ov:>14}")
 
-    print("\n── 참조 그래프 상위 관계 ────────────────────────")
-    for rel, cnt in list(ec["ref_top_relations"].items())[:8]:
-        print(f"  {rel:<20} {cnt:>4}개")
+    # 관계 분포
+    print("\n  [참조 그래프 상위 관계]")
+    for r, c in list(ref_result.get("relation_quality", {}).get("top_relations", {}).items())[:8]:
+        print(f"    {r:<30} {c:>4}개")
 
-    print("\n── 우리 그래프 상위 관계 ────────────────────────")
-    for rel, cnt in list(ec["our_top_relations"].items())[:8]:
-        print(f"  {rel:<20} {cnt:>4}개")
+    print("\n  [우리 그래프 상위 관계]")
+    for r, c in list(our_result.get("relation_quality", {}).get("top_relations", {}).items())[:8]:
+        print(f"    {r:<30} {c:>4}개")
 
-    if nc["overlap_examples"]:
-        print(f"\n── 일치 노드 예시 ({len(nc['overlap_examples'])}개) ──────────────────")
-        for n in nc["overlap_examples"][:10]:
-            print(f"  ✓ {n}")
+    print("\n" + "=" * 70)
+    print("  ↑: 높을수록 좋음  ↓: 낮을수록 좋음")
+    print("=" * 70)
 
-    if nc["only_in_ours"]:
-        print(f"\n── 우리 그래프만 발견 ({len(nc['only_in_ours'])}개) ─────────────────")
-        for n in nc["only_in_ours"][:10]:
-            print(f"  + {n}")
 
-    print("\n" + "=" * 60)
+# ── 진입점 ───────────────────────────────────────────────────────────────────
+
+def compare(ref_triplets: Path, our_graph: Path, law_filter: str | None = None) -> dict:
+    ref_G = _load_ref_graph(ref_triplets, law_filter)
+    our_G, our_meta = _load_our_graph(our_graph)
+
+    return {
+        "ref": _analyze(ref_G),
+        "ours": _analyze(our_G),
+        "meta": {
+            "ref_source": str(ref_triplets),
+            "ref_law_filter": law_filter or "all",
+            "our_source": our_meta.get("source", str(our_graph)),
+            "our_date": our_meta.get("date", "-"),
+        },
+    }
 
 
 def main():
-    parser = argparse.ArgumentParser(description="두 지식 그래프의 품질을 비교합니다.")
+    parser = argparse.ArgumentParser(description="두 지식 그래프의 내재적 품질을 비교합니다.")
     parser.add_argument("--ref-triplets", required=True, help="참조 triplets CSV 경로")
     parser.add_argument("--our-graph", required=True, help="graphify JSON 경로")
     parser.add_argument("--law", help="비교할 법령 이름 (예: 금융실명법)")
@@ -226,19 +298,22 @@ def main():
 
     ref_path = Path(args.ref_triplets)
     our_path = Path(args.our_graph)
-
     for p in [ref_path, our_path]:
         if not p.exists():
             print(f"❌ 파일 없음: {p}")
             sys.exit(1)
 
     result = compare(ref_path, our_path, law_filter=args.law)
-    _print_report(result)
+    _print_report(
+        result["ref"], result["ours"],
+        ref_label=result["meta"]["ref_source"],
+        our_label=result["meta"]["our_source"],
+    )
 
     if args.output:
         out = Path(args.output)
         out.write_text(json.dumps(result, ensure_ascii=False, indent=2), "utf-8")
-        print(f"\n💾 결과 저장: {out}")
+        print(f"\n결과 저장: {out}")
 
 
 if __name__ == "__main__":
