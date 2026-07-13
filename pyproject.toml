@@ -18,6 +18,7 @@ ingest = "scripts.ingest:main"
 query = "scripts.query:main"
 lint = "scripts.lint:main"
 graphify = "scripts.graphify:main"
+compare-graphs = "scripts.compare_graphs:main"
 wiki = "app.web:run"
 
 [build-system]
